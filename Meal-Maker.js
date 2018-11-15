@@ -7,62 +7,56 @@ const menu = {
   get appetizers() {
 
   },
-  set appetizers(appetizerIn) {
+  set appettizers(appetizerIn) {
 
   },
   get mains() {
 
   },
-  set mains(mainIn) {
+  set main(mainIn) {
 
   },
   get desserts() {
 
   },
-  set desserts(dessertIn) {
+  set desserts(dessertsIn) {
 
   },
   get courses() {
-    return {
-      appetizers: this._courses.appetizers,
-      mains: this._courses.mains,
-      desserts: this._courses.desserts,
-    }
+
   },
-  addDishToCourse(courseName, dishName, dishPrice) {
+  addDishToCourse (courseName, dishName, dishPrice) {
     const dish = {
       name: dishName,
-  		price: dishPrice
-    };
-
+      price: dishPrice
+    }
     this._courses[courseName].push(dish);
   },
-  getRandomDishFromCourse: function (courseName) {
+  getRandomDishFromCourse(courseName) {
     const dishes = this._courses[courseName];
     const randomIndex = Math.floor(Math.random() * dishes.length);
     return dishes[randomIndex];
   },
-  generateRandomMeal: function() {
+  generateRandomMeal() {
     const appetizer = this.getRandomDishFromCourse('appetizers');
-    const mains = this.getRandomDishFromCourse('mains');
-    const desserts = this.getRandomDishFromCourse('desserts');
-    const totalPrice = appetizer.price + mains.price + desserts.price;
-
-    return `Your meal is ${appetizer.name}, ${mains.name}, ${desserts.name}, The price is $${totalPrice}.`;
+    const main = this.getRandomDishFromCourse('mains');
+    const dessert = this.getRandomDishFromCourse('desserts');
+    const totalPrice = appetizer.price + main.price + dessert.price;
+    return `The meal is ${appetizer.name}, ${main.name} and ${dessert.name} and the total price is ${totalPrice}`;
   }
-};
 
-menu.addDishToCourse('appetizers', 'Caesar Salad', 4.25);
+}
+menu.addDishToCourse('appetizers', 'Olives', 3);
+menu.addDishToCourse('appetizers', 'Peanuts', 2);
+menu.addDishToCourse('appetizers', 'Oysters', 14);
+menu.addDishToCourse('mains', 'Sirloin', 25);
+menu.addDishToCourse('mains', 'Hake', 19);
+menu.addDishToCourse('mains', 'Cauliflower', 12);
+menu.addDishToCourse('desserts', 'White Brownie', 6);
+menu.addDishToCourse('desserts', 'Water Melon', 2.5);
+menu.addDishToCourse('desserts', 'Lemon Tart', 6);
 
-menu.addDishToCourse('mains', 'Carabinero', 2.25);
-
-menu.addDishToCourse('desserts', 'Tart', 1.25);
-
-menu.addDishToCourse('appetizers', 'asas', 7.25);
-
-menu.addDishToCourse('mains', 'sasare', 6.25);
-
-menu.addDishToCourse('desserts', 'reer', 3.25);
 
 let meal = menu.generateRandomMeal();
+
 console.log(meal);
